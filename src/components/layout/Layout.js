@@ -9,7 +9,7 @@ function Layout({ children, ...props }) {
       <main className="">
         <section className="">{children}</section>
       </main>
-      <footer>© 2021 NodeApi</footer>
+      <footer>© 2021</footer>
     </div>
   );
 }
