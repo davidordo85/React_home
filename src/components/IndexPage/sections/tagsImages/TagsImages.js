@@ -3,7 +3,7 @@ import React from 'react';
 const TagsImages = () => {
   return (
     <div>
-      <section>
+      <section id="tags">
         <p>tags images</p>
       </section>
     </div>

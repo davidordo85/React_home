@@ -3,7 +3,7 @@ import React from 'react';
 const ExplicationZone = () => {
   return (
     <div>
-      <section>
+      <section id="about">
         <p>explicación</p>
       </section>
     </div>
