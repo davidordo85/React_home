@@ -1,1 +1,9 @@
+.explication {
+  height: 100vh;
+  background-image: url('../img/bored.jpg');
+  background-size: cover;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

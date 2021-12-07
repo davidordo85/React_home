@@ -7,6 +7,7 @@ import football from '../img/football.jpg';
 import basket from '../img/basket.jpg';
 import tennis from '../img/tennis.jpg';
 import padel from '../img/padel.jpg';
+import './TagsImages.css';
 
 const TagsImages = () => {
   const tags = [
@@ -29,6 +30,7 @@ const TagsImages = () => {
                 className="d-block w-100"
                 src={tag.img}
                 alt={`${tag.tag} slide`}
+                height="400"
               />
               <Carousel.Caption>
                 <h3>{tag.tag}</h3>
