@@ -1,11 +1,13 @@
 import React from 'react';
+import { ChatMain, ContactZone, TagsImages, ExplicationZone } from './sections';
 
 const IndexPage = () => {
   return (
     <div>
-      <section>
-        <p>hola que ase</p>
-      </section>
+      <ExplicationZone />
+      <TagsImages />
+      <ChatMain />
+      <ContactZone />
     </div>
   );
 };
