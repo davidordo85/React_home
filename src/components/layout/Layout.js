@@ -1,6 +1,6 @@
 import React from 'react';
-
 import Header from './Header';
+import './Layout.css';
 
 function Layout({ children, ...props }) {
   return (

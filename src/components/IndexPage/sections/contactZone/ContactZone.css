@@ -1,3 +1,4 @@
 .submit {
-  display: flex;
+  display: grid;
+  align-content: center;
 }
