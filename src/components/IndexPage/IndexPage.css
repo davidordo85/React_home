@@ -1,3 +1,8 @@
 .index-page {
-  margin: 1rem;
+  margin: 4rem 1rem 1rem 1rem;
+}
+
+.init-chat {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
 }

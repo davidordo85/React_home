@@ -5,9 +5,11 @@ import './IndexPage.css';
 const IndexPage = () => {
   return (
     <div className="index-page">
-      <ExplicationZone />
+      <div className="init-chat">
+        <ExplicationZone />
+        <ChatMain />
+      </div>
       <TagsImages />
-      <ChatMain />
       <ContactZone />
     </div>
   );

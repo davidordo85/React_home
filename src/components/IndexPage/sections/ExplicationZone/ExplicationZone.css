@@ -1,9 +1,16 @@
 .explication {
-  height: 100vh;
-  background-image: url('../img/bored.jpg');
+  height: 40vh;
+  background-image: url('../img/social.png');
   background-size: cover;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.explication-text {
+  background-color: #fff;
+  text-align: center;
+  opacity: 0.6;
+  font-size: 2rem;
 }

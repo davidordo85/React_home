@@ -6,7 +6,10 @@ const ExplicationZone = () => {
     <div>
       <section id="about">
         <div className="explication">
-          <p>lorem ipsum</p>
+          <p className="explication-text">
+            Create meetings or join those already created to enjoy your hobbies
+            with people{' '}
+          </p>
         </div>
       </section>
     </div>

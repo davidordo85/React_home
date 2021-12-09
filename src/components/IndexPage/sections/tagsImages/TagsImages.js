@@ -22,7 +22,7 @@ const TagsImages = () => {
 
   return (
     <div>
-      <section id="tags">
+      <section id="tags" className="tags">
         <Carousel>
           {tags.map(tag => (
             <Carousel.Item>
