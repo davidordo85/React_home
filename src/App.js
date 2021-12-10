@@ -1,12 +1,13 @@
 import './App.css';
-import Layout from './components/layout/Layout';
 import IndexPage from './components/IndexPage/IndexPage';
+import { LoginPage } from './components/auth';
 
 function App() {
   return (
-    <Layout>
-      <IndexPage />
-    </Layout>
+    <div className="App">
+      {/* <IndexPage /> */}
+      <LoginPage />
+    </div>
   );
 }
 
