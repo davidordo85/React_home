@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-function LoginForm({ onSubmit, isLoading }) {
+function LoginForm({ onSubmit }) {
   const [credentials, setCredentials] = React.useState({
     email: '',
     password: '',
@@ -13,14 +13,14 @@ function LoginForm({ onSubmit, isLoading }) {
       const newCredentials = {
         ...oldCredentials,
         [event.target.name]: event.target.value,
+        remember: event.target.checked,
       };
       return newCredentials;
     });
   };
-
-  const handleCheckbox = event => {
-    const newCredentials = { ...credentials, remember: event.target.checked };
-    setCredentials(newCredentials);
+  const handleSubmit = event => {
+    event.preventDefault();
+    onSubmit(credentials);
   };
 
   const { email, password, remember } = credentials;
@@ -29,7 +29,7 @@ function LoginForm({ onSubmit, isLoading }) {
 
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -56,10 +56,11 @@ function LoginForm({ onSubmit, isLoading }) {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check
+            name="remember"
             type="checkbox"
             label="Remember Password"
             checked={remember}
-            onChange={handleCheckbox}
+            onChange={handleChange}
           />
         </Form.Group>
         <Button variant="primary" type="submit">
