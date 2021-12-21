@@ -25,8 +25,6 @@ function LoginForm({ onSubmit }) {
 
   const { email, password, remember } = credentials;
 
-  console.log(credentials);
-
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -62,7 +60,9 @@ function LoginForm({ onSubmit }) {
             checked={remember}
             onChange={handleChange}
           />
+          <Form.Text>You do not have an account ? create one</Form.Text>
         </Form.Group>
+
         <Button variant="primary" type="submit">
           Submit
         </Button>
