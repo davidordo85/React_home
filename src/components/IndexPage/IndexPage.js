@@ -1,18 +1,15 @@
 import React from 'react';
 import Layout from '../layout/Layout';
-import { ChatMain, ContactZone, TagsImages, ExplicationZone } from './sections';
+import { ChatMain, TagsImages, ExplicationZone } from './sections';
 import './IndexPage.css';
 
-const IndexPage = () => {
+const IndexPage = ({ isLogged }) => {
   return (
-    <Layout>
+    <Layout isLogged={isLogged}>
       <div className="index-page">
-        <div className="init-chat">
-          <ExplicationZone />
-          <ChatMain />
-        </div>
+        <ExplicationZone />
         <TagsImages />
-        <ContactZone />
+        <ChatMain />
       </div>
     </Layout>
   );

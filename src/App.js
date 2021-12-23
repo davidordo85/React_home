@@ -8,7 +8,11 @@ function App() {
   const handleLogin = () => setIsLogged(true);
   return (
     <div className="App">
-      {isLogged ? <IndexPage /> : <LoginPage onLogin={handleLogin} />}
+      {isLogged ? (
+        <IndexPage isLogged={isLogged} />
+      ) : (
+        <LoginPage onLogin={handleLogin} />
+      )}
     </div>
   );
 }
