@@ -6,10 +6,11 @@ import { LoginPage } from './components/auth';
 function App() {
   const [isLogged, setIsLogged] = React.useState(false);
   const handleLogin = () => setIsLogged(true);
+  const handleLogout = () => setIsLogged(false);
   return (
     <div className="App">
       {isLogged ? (
-        <IndexPage isLogged={isLogged} />
+        <IndexPage isLogged={isLogged} onLogout={handleLogout} />
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}

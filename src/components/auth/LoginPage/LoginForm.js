@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Spinner } from 'react-bootstrap';
 
-function LoginForm({ onSubmit }) {
+function LoginForm({ onSubmit, isLoading, variant }) {
   const [credentials, setCredentials] = React.useState({
     email: '',
     password: '',
@@ -63,8 +63,22 @@ function LoginForm({ onSubmit }) {
           <Form.Text>You do not have an account ? create one</Form.Text>
         </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
+        <Button
+          variant={variant}
+          type="submit"
+          disabled={isLoading || !email || !password}
+        >
+          {isLoading ? (
+            <Spinner
+              as="span"
+              variant="warning"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+          ) : null}
+          {isLoading ? ' Loading...' : 'Submit'}
         </Button>
       </Form>
     </div>

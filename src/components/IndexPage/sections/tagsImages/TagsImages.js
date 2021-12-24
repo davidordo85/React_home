@@ -24,8 +24,8 @@ const TagsImages = () => {
     <div>
       <section id="tags" className="tags">
         <Carousel>
-          {tags.map(tag => (
-            <Carousel.Item>
+          {tags.map((tag, index) => (
+            <Carousel.Item key={index}>
               <img
                 className="d-block w-100"
                 src={tag.img}
