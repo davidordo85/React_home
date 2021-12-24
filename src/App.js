@@ -1,19 +1,23 @@
 import React from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import IndexPage from './components/IndexPage/IndexPage';
-import { LoginPage } from './components/auth';
+import { LoginPage, RegisterPage } from './components/auth';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = React.useState(isInitiallyLogged);
   const handleLogin = () => setIsLogged(true);
   const handleLogout = () => setIsLogged(false);
+  let match = useLocation();
 
-  console.log(isLogged);
   return (
     <div className="App">
       <Routes>
-        <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/login"
+          element={<LoginPage onLogin={handleLogin} params={match} />}
+        />
         <Route
           path="/"
           element={<IndexPage isLogged={isLogged} onLogout={handleLogout} />}

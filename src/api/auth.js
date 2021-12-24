@@ -16,3 +16,7 @@ export const logout = () => {
     storage.remove('auth');
   });
 };
+
+export const register = credentials => {
+  return client.post(`${authBaseUrl}/register`, credentials);
+};

@@ -6,7 +6,7 @@ import { Card, Alert } from 'react-bootstrap';
 import './LoginPage.css';
 import { useNavigate } from 'react-router-dom';
 
-function LoginPage({ onLogin }) {
+function LoginPage({ onLogin, params }) {
   const [error, setError] = React.useState(null);
   const [variant, setVariant] = React.useState('primary');
   const [isLoading, setIsLoading] = React.useState(false);
@@ -37,6 +37,8 @@ function LoginPage({ onLogin }) {
       setIsLoading(false);
     }
   };
+
+  console.log(params);
 
   return (
     <Layout>

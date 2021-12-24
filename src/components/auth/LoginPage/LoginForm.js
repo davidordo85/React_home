@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button, Spinner } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function LoginForm({ onSubmit, isLoading, variant }) {
   const [credentials, setCredentials] = React.useState({
@@ -60,7 +61,9 @@ function LoginForm({ onSubmit, isLoading, variant }) {
             checked={remember}
             onChange={handleChange}
           />
-          <Form.Text>You do not have an account ? create one</Form.Text>
+          <Form.Text>
+            You do not have an account ? <Link to="/register">create one</Link>
+          </Form.Text>
         </Form.Group>
 
         <Button
