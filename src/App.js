@@ -8,6 +8,8 @@ function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = React.useState(isInitiallyLogged);
   const handleLogin = () => setIsLogged(true);
   const handleLogout = () => setIsLogged(false);
+
+  console.log(isLogged);
   return (
     <div className="App">
       <Routes>

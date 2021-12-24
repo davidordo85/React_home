@@ -1,24 +1,26 @@
 import React from 'react';
 import Layout from '../../layout/Layout';
 import LoginForm from './LoginForm';
-
 import { login } from '../../../api/auth';
 import { Card, Alert } from 'react-bootstrap';
 import './LoginPage.css';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage({ onLogin }) {
   const [error, setError] = React.useState(null);
   const [variant, setVariant] = React.useState('primary');
   const [isLoading, setIsLoading] = React.useState(false);
-
   const isLogged = React.useRef(false);
+  let navigate = useNavigate();
+
   const resetError = () => setError(null);
 
   React.useEffect(() => {
     if (isLogged.current) {
       onLogin();
+      navigate('/');
     }
-  }, [onLogin]);
+  });
 
   const handleSubmit = async credentials => {
     setIsLoading(true);
@@ -35,8 +37,6 @@ function LoginPage({ onLogin }) {
       setIsLoading(false);
     }
   };
-
-  console.log(isLogged.current);
 
   return (
     <Layout>
