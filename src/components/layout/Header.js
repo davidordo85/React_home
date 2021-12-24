@@ -1,12 +1,8 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { logout } from '../../api/auth';
+import AuthLink from '../auth/AuthLink';
 
 const Header = ({ isLogged, onLogout, ...props }) => {
-  const handleLogoutClick = () => {
-    logout().then(onLogout);
-  };
-
   return (
     <header {...props}>
       <Navbar bg="light" expand="lg" className="fixed-top header">
@@ -14,11 +10,7 @@ const Header = ({ isLogged, onLogout, ...props }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            {isLogged ? (
-              <Nav.Link onClick={handleLogoutClick}>Logout</Nav.Link>
-            ) : (
-              <Nav.Link>Login</Nav.Link>
-            )}
+            <AuthLink isLogged={isLogged} onLogout={onLogout} />
             <Nav.Link href="#about">Home</Nav.Link>
             <Nav.Link href="#tags">Tags</Nav.Link>
             <Nav.Link href="#contact">Contact</Nav.Link>

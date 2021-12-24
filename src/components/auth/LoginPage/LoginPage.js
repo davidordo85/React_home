@@ -28,9 +28,6 @@ function LoginPage({ onLogin }) {
     }
   };
 
-  console.log(error);
-  console.log(isLoading);
-
   return (
     <Layout>
       <Card className="login">
