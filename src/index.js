@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { BrowserRouter as Router } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -11,7 +13,9 @@ configureClient({ accessToken });
 
 ReactDOM.render(
   <React.StrictMode>
-    <App isInitiallyLogged={!!accessToken} />
+    <Router>
+      <App isInitiallyLogged={!!accessToken} />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root'),
 );
