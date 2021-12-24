@@ -10,7 +10,15 @@ function LoginPage({ onLogin }) {
   const [error, setError] = React.useState(null);
   const [variant, setVariant] = React.useState('primary');
   const [isLoading, setIsLoading] = React.useState(false);
+
+  const isLogged = React.useRef(false);
   const resetError = () => setError(null);
+
+  React.useEffect(() => {
+    if (isLogged.current) {
+      onLogin();
+    }
+  }, [onLogin]);
 
   const handleSubmit = async credentials => {
     setIsLoading(true);
@@ -18,8 +26,8 @@ function LoginPage({ onLogin }) {
     setVariant('primary');
     try {
       await login(credentials);
+      isLogged.current = true;
       setVariant('success');
-      onLogin();
     } catch (error) {
       setError(error);
       setVariant('danger');
@@ -27,6 +35,8 @@ function LoginPage({ onLogin }) {
       setIsLoading(false);
     }
   };
+
+  console.log(isLogged.current);
 
   return (
     <Layout>

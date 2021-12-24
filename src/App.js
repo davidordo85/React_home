@@ -3,8 +3,8 @@ import './App.css';
 import IndexPage from './components/IndexPage/IndexPage';
 import { LoginPage } from './components/auth';
 
-function App() {
-  const [isLogged, setIsLogged] = React.useState(false);
+function App({ isInitiallyLogged }) {
+  const [isLogged, setIsLogged] = React.useState(isInitiallyLogged);
   const handleLogin = () => setIsLogged(true);
   const handleLogout = () => setIsLogged(false);
   return (
