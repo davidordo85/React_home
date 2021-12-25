@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from '../../layout/Layout';
-import LoginForm from './LoginForm';
+import LoginAndRegisterForm from './LoginAndRegisterForm';
 import { login } from '../../../api/auth';
-import { Card, Alert } from 'react-bootstrap';
+import { Card, Alert, Form } from 'react-bootstrap';
 import './LoginPage.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
-function LoginPage({ onLogin, params }) {
+function LoginPage({ onLogin }) {
   const [error, setError] = React.useState(null);
   const [variant, setVariant] = React.useState('primary');
   const [isLoading, setIsLoading] = React.useState(false);
@@ -38,18 +38,19 @@ function LoginPage({ onLogin, params }) {
     }
   };
 
-  console.log(params);
-
   return (
     <Layout>
       <Card className="login">
         <Card.Header>Login</Card.Header>
         <Card.Body>
-          <LoginForm
+          <LoginAndRegisterForm
             onSubmit={handleSubmit}
             isLoading={isLoading}
             variant={variant}
           />
+          <Form.Text>
+            You do not have an account ? <Link to="/register">create one</Link>
+          </Form.Text>
         </Card.Body>
         {error && (
           <Alert

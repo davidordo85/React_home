@@ -1,10 +1,9 @@
 import React from 'react';
 import { Form, Button, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
-function LoginForm({ onSubmit, isLoading, variant }) {
+function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
   const [credentials, setCredentials] = React.useState({
-    email: '',
+    username: '',
     password: '',
     remember: false,
   });
@@ -24,22 +23,22 @@ function LoginForm({ onSubmit, isLoading, variant }) {
     onSubmit(credentials);
   };
 
-  const { email, password, remember } = credentials;
+  const { username, password, remember } = credentials;
 
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+        <Form.Group className="mb-3" controlId="formBasicusername">
+          <Form.Label>username address</Form.Label>
           <Form.Control
-            name="email"
-            type="email"
-            placeholder="Enter email"
-            value={email}
+            name="username"
+            type="username"
+            placeholder="Enter username"
+            value={username}
             onChange={handleChange}
           />
           <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+            We'll never share your username with anyone else.
           </Form.Text>
         </Form.Group>
 
@@ -61,15 +60,12 @@ function LoginForm({ onSubmit, isLoading, variant }) {
             checked={remember}
             onChange={handleChange}
           />
-          <Form.Text>
-            You do not have an account ? <Link to="/register">create one</Link>
-          </Form.Text>
         </Form.Group>
 
         <Button
           variant={variant}
           type="submit"
-          disabled={isLoading || !email || !password}
+          disabled={isLoading || !username || !password}
         >
           {isLoading ? (
             <Spinner
@@ -88,4 +84,4 @@ function LoginForm({ onSubmit, isLoading, variant }) {
   );
 }
 
-export default LoginForm;
+export default LoginAndRegisterForm;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import IndexPage from './components/IndexPage/IndexPage';
 import { LoginPage, RegisterPage } from './components/auth';
@@ -8,16 +8,12 @@ function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = React.useState(isInitiallyLogged);
   const handleLogin = () => setIsLogged(true);
   const handleLogout = () => setIsLogged(false);
-  let match = useLocation();
 
   return (
     <div className="App">
       <Routes>
         <Route path="/register" element={<RegisterPage />} />
-        <Route
-          path="/login"
-          element={<LoginPage onLogin={handleLogin} params={match} />}
-        />
+        <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
         <Route
           path="/"
           element={<IndexPage isLogged={isLogged} onLogout={handleLogout} />}
