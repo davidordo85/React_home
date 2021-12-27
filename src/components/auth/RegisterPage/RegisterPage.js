@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../../layout/Layout';
-import LoginAndRegisterForm from '../LoginPage/LoginAndRegisterForm';
+import RegisterForm from './RegisterForm';
 import { Card, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../../api/auth';
@@ -9,8 +9,15 @@ function RegisterPage() {
   const [error, setError] = React.useState(null);
   const [variant, setVariant] = React.useState('primary');
   const [isLoading, setIsLoading] = React.useState(false);
+  const isNewUser = React.useRef(false);
   let navigate = useNavigate();
   const resetError = () => setError(null);
+
+  React.useEffect(() => {
+    if (isNewUser.current) {
+      navigate('/login');
+    }
+  });
 
   const handleSubmit = async credentials => {
     setIsLoading(true);
@@ -18,8 +25,8 @@ function RegisterPage() {
     setVariant('primary');
     try {
       await register(credentials);
+      isNewUser.current = true;
       setVariant('success');
-      navigate('/login');
     } catch (error) {
       setError(error);
       setVariant('danger');
@@ -33,7 +40,7 @@ function RegisterPage() {
       <Card className="login">
         <Card.Header>Register</Card.Header>
         <Card.Body>
-          <LoginAndRegisterForm
+          <RegisterForm
             onSubmit={handleSubmit}
             isLoading={isLoading}
             variant={variant}

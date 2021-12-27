@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../../layout/Layout';
-import LoginAndRegisterForm from './LoginAndRegisterForm';
+import LoginForm from './LoginForm';
 import { login } from '../../../api/auth';
 import { Card, Alert, Form } from 'react-bootstrap';
 import './LoginPage.css';
@@ -43,7 +43,7 @@ function LoginPage({ onLogin }) {
       <Card className="login">
         <Card.Header>Login</Card.Header>
         <Card.Body>
-          <LoginAndRegisterForm
+          <LoginForm
             onSubmit={handleSubmit}
             isLoading={isLoading}
             variant={variant}
