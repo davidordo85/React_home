@@ -1,14 +1,12 @@
 import React from 'react';
 import { Form, Button, Spinner } from 'react-bootstrap';
-import { duplicated } from '../../../api/auth';
 
 function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
   const [credentials, setCredentials] = React.useState({
+    email: '',
     username: '',
     password: '',
   });
-  const [ok, setOk] = React.useState(false);
-  const [check, setCheck] = React.useState();
 
   const handleChange = event => {
     setCredentials(oldCredentials => {
@@ -25,52 +23,31 @@ function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
     onSubmit(credentials);
   };
 
-  const { username, password } = credentials;
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      handleCheck(credentials);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [credentials]);
-
-  const handleCheck = async credentials => {
-    try {
-      const success = await duplicated(credentials);
-      setCheck(success);
-      if (success.success === true) {
-        setOk(true);
-      } else {
-        setOk(false);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  console.log(check, username, ok);
+  const { email, username, password } = credentials;
 
   return (
     <div>
       <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            name="email"
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={handleChange}
+          />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicUsername">
-          <Form.Label>username address</Form.Label>
+          <Form.Label>Username</Form.Label>
           <Form.Control
             name="username"
             type="username"
             placeholder="Enter username"
-            isValid={ok}
-            isInvalid={!ok || username.length <= 6}
             value={username}
             onChange={handleChange}
           />
         </Form.Group>
-        {!ok ? (
-          <Form.Text className="text-muted">Duplicate user</Form.Text>
-        ) : username.length <= 6 ? (
-          <Form.Text className="text-muted">
-            the user must have more than 6 characters{' '}
-          </Form.Text>
-        ) : null}
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
@@ -78,8 +55,6 @@ function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
             name="password"
             type="password"
             placeholder="Password"
-            isValid={password.length > 5}
-            isInvalid={password.length < 5}
             value={password}
             onChange={handleChange}
           />
@@ -88,7 +63,7 @@ function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
         <Button
           variant={variant}
           type="submit"
-          disabled={isLoading || !username || !password || !ok}
+          disabled={isLoading || !email || !username || !password}
         >
           {isLoading ? (
             <Spinner

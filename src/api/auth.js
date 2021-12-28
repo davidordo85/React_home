@@ -20,7 +20,3 @@ export const logout = () => {
 export const register = credentials => {
   return client.post(`${authBaseUrl}/register`, credentials);
 };
-
-export const duplicated = username => {
-  return client.post(`${authBaseUrl}/duplicated`, username);
-};
