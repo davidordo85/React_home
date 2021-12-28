@@ -7,6 +7,9 @@ function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
     username: '',
     password: '',
   });
+  const [repeatPassword, setRepeatPassword] = React.useState('');
+  const isEmail = email => /\S+@\S+/.test(email);
+  const isPassword = password => password.length >= 6;
 
   const handleChange = event => {
     setCredentials(oldCredentials => {
@@ -16,6 +19,10 @@ function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
       };
       return newCredentials;
     });
+  };
+
+  const handleRepeat = event => {
+    setRepeatPassword(event.target.value);
   };
 
   const handleSubmit = event => {
@@ -36,6 +43,9 @@ function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
             placeholder="Enter email"
             value={email}
             onChange={handleChange}
+            isValid={isEmail(email)}
+            isInvalid={!isEmail(email)}
+            validate
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -46,6 +56,9 @@ function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
             placeholder="Enter username"
             value={username}
             onChange={handleChange}
+            isValid={isPassword(username)}
+            isInvalid={!isPassword(username)}
+            validate
           />
         </Form.Group>
 
@@ -57,13 +70,35 @@ function LoginAndRegisterForm({ onSubmit, isLoading, variant }) {
             placeholder="Password"
             value={password}
             onChange={handleChange}
+            isValid={isPassword(password)}
+            isInvalid={!isPassword(password)}
+            validate
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicRepeatPassword">
+          <Form.Label>Repeat password</Form.Label>
+          <Form.Control
+            name="repeatPassword"
+            type="repeatPassword"
+            placeholder="Repeat Password"
+            value={repeatPassword}
+            onChange={handleRepeat}
+            isValid={password === repeatPassword}
+            isInvalid={password !== repeatPassword}
+            validate
           />
         </Form.Group>
 
         <Button
           variant={variant}
           type="submit"
-          disabled={isLoading || !email || !username || !password}
+          disabled={
+            isLoading ||
+            !email ||
+            !username ||
+            !password ||
+            password !== repeatPassword
+          }
         >
           {isLoading ? (
             <Spinner
